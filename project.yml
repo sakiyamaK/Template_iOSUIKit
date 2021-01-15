@@ -1,0 +1,45 @@
+name: Template_iOSUIKit
+# configs:
+#     Debug: debug
+#     Release: release
+# configFiles:
+#   Debug: configs/Debug.xcconfig
+#   Release: configs/Release.xcconfig
+options:
+  bundleIdPrefix: com.sakiyamaK.*
+  deploymentTarget:
+    iOS: 12.0
+# packages:
+#     IQKeyboardManagerSwift:
+#         url: https://github.com/hackiftekhar/IQKeyboardManager
+#         from: 6.5.0
+#     SnapKit:
+#         url: https://github.com/SnapKit/SnapKit
+#         from: 5.0.1
+#     Lottie:
+#         url: https://github.com/airbnb/lottie-ios
+#         from: 3.1.8
+targets:
+  Template_iOSUIKit:
+    platform: iOS
+    type: application
+    # dependencies:
+    #     - package: IQKeyboardManagerSwift
+    #     - package: SnapKit
+    #     - package: Lottie
+    sources:
+      - path: Template_iOSUIKit/
+      - path: R.generated.swift
+        optional: true
+    # configFiles:
+    #     Debug: configs/Debug.xcconfig
+    #     Release: configs/Release.xcconfig
+    preBuildScripts:
+        - path: /bin/sh
+          name: Run Script(R.swift)
+          script: |
+                "$PODS_ROOT/R.swift/rswift" generate "$SRCROOT/R.generated.swift"
+          inputFiles:
+                - $TEMP_DIR/rswift-lastrun
+          outputFiles:
+                - $SRCROOT/R.generated.swift
