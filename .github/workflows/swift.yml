@@ -1,4 +1,4 @@
-name: Swift
+name: iOS Build
 
 on:
   push:
@@ -21,7 +21,7 @@ jobs:
     - name: Show Xcode version
       run: xcodebuild -version
     - name: run setup script
-      run: ./setup.sh
+      run: ./script/setup.sh
     
    # Mintで管理しているライブラリのキャッシュ
     - name: Cache Mint packages
