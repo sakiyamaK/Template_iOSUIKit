@@ -52,7 +52,7 @@ jobs:
         -sdk iphonesimulator
         -configuration Debug
         -workspace Template_iOSUIKit.xcworkspace
-        -scheme debug
+        -scheme Template_iOSUIKit
         build
         | bundle exec xcpretty    
 #     - name: Run tests
