@@ -4,7 +4,6 @@ use_frameworks!
 
 target 'Template_iOSUIKit' do
   
-  pod 'SwiftLint'
   pod 'R.swift'
 
 end

@@ -1,5 +1,5 @@
 #!/bin/sh
-
+mint bootstrap
 xcodegen generate
 bundle install
 bundle exec pod install
