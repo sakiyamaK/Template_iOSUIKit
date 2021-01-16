@@ -1,6 +1,6 @@
 #!/bin/sh
 mint bootstrap
-xcodegen generate
+mint run xcodegen xcodegen generate
 bundle install
 bundle exec pod install
 if [ "$?" -ne 0 ]; then
