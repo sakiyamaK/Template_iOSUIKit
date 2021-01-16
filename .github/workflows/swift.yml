@@ -1,0 +1,53 @@
+name: Swift
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+env:
+  DEVELOPER_DIR: /Applications/Xcode_12.3.app
+jobs:
+  build:
+
+    runs-on: macos-latest
+    env:
+      MINT_PATH: mint/lib
+      MINT_LINK_PATH: mint/bin
+    steps:
+    - uses: actions/checkout@v2
+    - name: Show Xcode list
+      run: ls /Applications | grep 'Xcode'    
+    - name: Show Xcode version
+      run: xcodebuild -version
+    - name: run setup script
+      run: ./setup.sh
+    
+   # Mintで管理しているライブラリのキャッシュ
+    - name: Cache Mint packages
+      uses: actions/cache@v2
+      with:
+        path: mint
+        key: ${{ runner.os }}-mint-${{ hashFiles('**/Mintfile') }}
+        restore-keys: |
+          ${{ runner.os }}-mint-
+          
+    # CocoaPodsで管理しているライブラリのキャッシュ
+    - name: Cache Pods
+      uses: actions/cache@v2
+      with:
+        path: Pods
+        key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-pods-    
+    - name: Xcode build
+      run: set -o pipefail &&
+        xcodebuild
+        -sdk iphonesimulator
+        -configuration Debug
+        -workspace Template_iOSUIKit.xcworkspace
+        -scheme debug
+        build
+        | bundle exec xcpretty    
+#     - name: Run tests
+#       run: swift test -v
