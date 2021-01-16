@@ -9,17 +9,23 @@ env:
   DEVELOPER_DIR: /Applications/Xcode_12.3.app
 jobs:
   build:
-
     runs-on: macos-latest
     env:
       MINT_PATH: mint/lib
       MINT_LINK_PATH: mint/bin
+
     steps:
     - uses: actions/checkout@v2
+    # Xcodeのリストを表示
     - name: Show Xcode list
       run: ls /Applications | grep 'Xcode'    
+    # Xcodeのバージョンを表示
     - name: Show Xcode version
       run: xcodebuild -version
+     # Mintのインストール
+    - name: Install Mint
+      run: brew install mint
+    # スクリプトの実行
     - name: run setup script
       run: ./script/setup.sh
     
