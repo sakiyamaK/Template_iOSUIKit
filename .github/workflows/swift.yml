@@ -98,7 +98,6 @@ jobs:
         -workspace Template_iOSUIKit.xcworkspace
         -scheme Template_iOSUIKit
         -destination 'platform=iOS Simulator,name=iPhone 12'
-        # -skip-testing:{UIテスト}
         clean test
         | bundle exec xcpretty --report html
 
