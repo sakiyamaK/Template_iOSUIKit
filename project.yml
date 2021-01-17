@@ -19,6 +19,13 @@ packages:
   Lottie:
       url: https://github.com/airbnb/lottie-ios
       from: 3.1.8
+  Nimble:
+      url: https://github.com/Quick/Nimble
+      from: 8.1.2
+  Quick:
+      url: https://github.com/Quick/Quick
+      from: 3.0.0
+  
 targets:
   Template_iOSUIKit:
     platform: iOS
@@ -43,3 +50,13 @@ targets:
                 - $TEMP_DIR/rswift-lastrun
           outputFiles:
                 - $SRCROOT/R.generated.swift
+
+  # Unit Test
+  Template_iOSUIKitTests:
+    platform: iOS
+    type: bundle.unit-test
+    sources: Template_iOSUIKitTests
+    dependencies:
+      - package: Nimble
+      - package: Quick
+      - target: Template_iOSUIKit

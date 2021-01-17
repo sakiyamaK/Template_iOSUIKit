@@ -10,6 +10,8 @@ XcodeGenを使ってiOSアプリをUIKitで作るときのテンプレート
 
 `MakeFile` > `Template_iOSUIKit`と書かれてる箇所
 
+`.github/workflows/swift.yml` > `Template_iOSUIKit`と書かれてる箇所
+
 その後
 
 ```
