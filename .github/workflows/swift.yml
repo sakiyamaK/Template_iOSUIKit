@@ -1,4 +1,4 @@
-name: iOS Build
+name: main
 
 on:
   push:
@@ -16,20 +16,25 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+
     # Xcodeのリストを表示
     - name: Show Xcode list
       run: ls /Applications | grep 'Xcode'    
+
     # Xcodeのバージョンを表示
     - name: Show Xcode version
       run: xcodebuild -version
-     # Mintのインストール
-    - name: Install Mint
-      run: brew install mint
-    # スクリプトの実行
-    - name: run setup script
-      run: ./script/setup.sh
-    
-   # Mintで管理しているライブラリのキャッシュ
+
+    # Gemで管理しているライブラリのキャッシュ
+    - name: Cache Gems
+      uses: actions/cache@v2
+      with:
+        path: vendor/bundle
+        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-gems-
+
+    # Mintで管理しているライブラリのキャッシュ
     - name: Cache Mint packages
       uses: actions/cache@v2
       with:
@@ -37,7 +42,7 @@ jobs:
         key: ${{ runner.os }}-mint-${{ hashFiles('**/Mintfile') }}
         restore-keys: |
           ${{ runner.os }}-mint-
-          
+  
     # CocoaPodsで管理しているライブラリのキャッシュ
     - name: Cache Pods
       uses: actions/cache@v2
@@ -45,7 +50,17 @@ jobs:
         path: Pods
         key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
         restore-keys: |
-          ${{ runner.os }}-pods-    
+          ${{ runner.os }}-pods-   
+
+     # Mintのインストール
+    - name: Install Mint
+      run: brew install mint
+
+    # スクリプトの実行
+    - name: run setup script
+      run: ./script/setup.sh
+
+    # Xcodeでビルド 
     - name: Xcode build
       run: set -o pipefail &&
         xcodebuild
