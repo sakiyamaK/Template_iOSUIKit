@@ -12,6 +12,8 @@ XcodeGenを使ってiOSアプリをUIKitで作るときのテンプレート
 
 `.github/workflows/swift.yml` > `Template_iOSUIKit`と書かれてる箇所
 
+`.slather.yml` > `Template_iOSUIKit`と書かれてる箇所
+
 その後
 
 ```

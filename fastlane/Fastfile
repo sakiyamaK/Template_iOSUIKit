@@ -16,8 +16,30 @@
 default_platform(:ios)
 
 platform :ios do
-  desc "Description of what the lane does"
-  lane :custom_lane do
-    # add actions here: https://docs.fastlane.tools/actions
+  desc "Runs all the tests"
+  lane :test do
+    scan(
+      workspace: "Template_iOSUIKit.xcworkspace",
+      scheme: "Template_iOSUIKit",
+      configuration: "Debug",
+      device: "iPhone 12",
+      code_coverage: true,
+      derived_data_path: "build/fastlane/derived_data",
+      buildlog_path: "build/fastlane/scan_build_log",
+      output_directory: "build/fastlane/scan_output",
+      output_types: "html",
+      output_files: "report.html"
+    )
+
+    slather(
+      workspace: "Template_iOSUIKit.xcworkspace",
+      proj: "Template_iOSUIKit.xcodeproj",
+      scheme: "Template_iOSUIKit",
+      build_directory: "build/fastlane/derived_data",
+      output_directory: "build/fastlane/slather",
+      ignore: "Pods/**",
+      cobertura_xml: true,
+      verbose: true
+    )
   end
 end

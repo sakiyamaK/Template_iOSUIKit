@@ -21,11 +21,39 @@ packages:
       from: 3.1.8
   Nimble:
       url: https://github.com/Quick/Nimble
-      from: 8.1.2
+      from: 9.0.0
   Quick:
       url: https://github.com/Quick/Quick
       from: 3.0.0
-  
+configs:
+  Debug: debug
+  Release: release
+schemes:
+  Template_iOSUIKit:
+    build:
+      targets:
+        Template_iOSUIKit: all
+    run:
+      config: Debug
+    test:
+      config: Debug
+      gatherCoverageData: true
+      coverageTargets:
+        - Template_iOSUIKit
+      targets:
+        - name: Template_iOSUIKitTests
+          parallelizable: true
+          randomExecutionOrder: true
+        # - name: Template_iOSUIKitUITests
+        #   parallelizable: true
+        #   randomExecutionOrder: true
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release
+
 targets:
   Template_iOSUIKit:
     platform: iOS
