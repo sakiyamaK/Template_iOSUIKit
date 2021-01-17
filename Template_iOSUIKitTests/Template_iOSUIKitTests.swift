@@ -16,7 +16,7 @@ class Template_iOSUIKitTests: QuickSpec {
     describe("Nimble Tests") {
       context("成功例") {
         it("同じ") {
-          expect(1+1).to(equal(2))
+          expect(1+1).to(equal(100))
           expect(1+1) == 2
           expect(1+1).toNot(equal(3))
           expect(1+1) != 3
