@@ -2,4 +2,5 @@ Gemfile.lock
 R.generated.swift
 *.xcodeproj
 *.xcworkspace
-html_report/*
+*test_output
+report.xml

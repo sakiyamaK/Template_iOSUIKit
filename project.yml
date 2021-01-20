@@ -42,7 +42,7 @@ schemes:
         - Template_iOSUIKit
       targets:
         - name: Template_iOSUIKitTests
-          parallelizable: true
+          # parallelizable: true
           randomExecutionOrder: true
         # - name: Template_iOSUIKitUITests
         #   parallelizable: true

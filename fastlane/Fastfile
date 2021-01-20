@@ -24,22 +24,26 @@ platform :ios do
       configuration: "Debug",
       device: "iPhone 12",
       code_coverage: true,
-      derived_data_path: "build/fastlane/derived_data",
-      buildlog_path: "build/fastlane/scan_build_log",
-      output_directory: "build/fastlane/scan_output",
-      output_types: "html",
-      output_files: "report.html"
+      # derived_data_path: "build/fastlane/derived_data",
+      # buildlog_path: "build/fastlane/scan_build_log",      
+      # output_directory: "build/fastlane/scan_output",
+      test_without_building: true,
+      max_concurrent_simulators: 1,
+      open_report: true,
+      skip_build: true,
+      # output_types: "html",
+      # output_files: "report.html"
     )
 
-    slather(
-      workspace: "Template_iOSUIKit.xcworkspace",
-      proj: "Template_iOSUIKit.xcodeproj",
-      scheme: "Template_iOSUIKit",
-      build_directory: "build/fastlane/derived_data",
-      output_directory: "build/fastlane/slather",
-      ignore: "Pods/**",
-      cobertura_xml: true,
-      verbose: true
-    )
+    # slather(
+    #   workspace: "Template_iOSUIKit.xcworkspace",
+    #   proj: "Template_iOSUIKit.xcodeproj",
+    #   scheme: "Template_iOSUIKit",
+    #   build_directory: "build/fastlane/derived_data",
+    #   output_directory: "build/fastlane/slather",
+    #   ignore: "Pods/**",
+    #   cobertura_xml: true,
+    #   verbose: true
+    # )
   end
 end
