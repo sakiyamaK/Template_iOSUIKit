@@ -1,0 +1,34 @@
+# .jazzy.yaml
+
+# ドキュメント化するスコープ
+min_acl: internal
+
+# 出力先フォルダをクリーンするか否か
+clean: false
+
+# 出力先フォルダの指定
+output: docs
+
+# 作成者の名前
+# author: Kei Sakiyama
+
+# ドキュメント化する対象モジュールの名称
+module: Template_iOSUIKit
+
+xcodebuild_arguments: 
+  - -workspace
+  - Template_iOSUIKit.xcworkspace
+  - -scheme
+  - Template_iOSUIKit
+
+# ドキュメントコメントのないファイルはスキップするか否か
+skip_undocumented: true
+
+# ドキュメントにつけるバージョン番号
+module_version: 1.0
+
+# コピーライト
+copyright: © 2021 - Kei Sakiyama - Powered by Octopress
+
+# ドキュメントのテーマ(apple/fullWidth/jonyの3つから選択可能)
+theme: apple

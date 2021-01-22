@@ -1,0 +1,7 @@
+version: "Apple Swift version 5.3.2 (swiftlang-1200.0.45 clang-1200.0.32.28)"
+options: "7d1849efdc46aad9462b30861e08767b"
+build_time: [1611288432, 700423000]
+inputs:
+  "/Users/sakiyamak/Documents/github/ios/005_Template/Template_iOSUIKit/Template_iOSUIKit/AppDelegate.swift": !dirty [1611286886, 112385375]
+  "/Users/sakiyamak/Documents/github/ios/005_Template/Template_iOSUIKit/R.generated.swift": !dirty [1611227471, 877154554]
+  "/Users/sakiyamak/Documents/github/ios/005_Template/Template_iOSUIKit/Template_iOSUIKit/Router/Router.swift": !dirty [1610730484, 423969977]

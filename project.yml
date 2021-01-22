@@ -6,7 +6,7 @@ name: Template_iOSUIKit
 #   Debug: configs/Debug.xcconfig
 #   Release: configs/Release.xcconfig
 options:
-  bundleIdPrefix: com.sakiyamaK.*
+  bundleIdPrefix: com.sakiyamaK
   deploymentTarget:
     iOS: 12.0
 packages:
