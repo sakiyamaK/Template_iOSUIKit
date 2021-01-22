@@ -2,6 +2,7 @@ Gemfile.lock
 R.generated.swift
 *.xcodeproj
 *.xcworkspace
-*test_output
-report.xml
-docs*
+build/fastlane
+static_html/coverage_result
+static_html/docs
+static_html/test_result

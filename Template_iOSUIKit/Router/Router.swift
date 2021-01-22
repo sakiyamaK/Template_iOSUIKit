@@ -7,12 +7,13 @@
 
 import UIKit
 
-/*
+/**
 画面遷移を管理
 */
 final class Router {
   // MARK: static method
-  /*
+
+  /**
    起動直後の画面を表示する
    - parameter window: UIWindow
   */

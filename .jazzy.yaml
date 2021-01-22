@@ -4,10 +4,10 @@
 min_acl: internal
 
 # 出力先フォルダをクリーンするか否か
-clean: false
+clean: true
 
 # 出力先フォルダの指定
-output: docs
+output: static_html/docs
 
 # 作成者の名前
 # author: Kei Sakiyama

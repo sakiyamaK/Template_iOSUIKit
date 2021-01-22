@@ -78,20 +78,24 @@ jobs:
     - name: run setup script
       run: ./script/setup.sh
 
+    # ドキュメントの作成
+    - name: create document
+      run: bundle exec jazzy
+
     # Xcodeでビルド 
-    - name: Xcode build
-      run: set -o pipefail &&
-        xcodebuild
-        -sdk iphonesimulator
-        -configuration Debug
-        -workspace Template_iOSUIKit.xcworkspace
-        -scheme Template_iOSUIKit
-        build
-        | bundle exec xcpretty
+    # - name: Xcode build
+    #   run: set -o pipefail &&
+    #     xcodebuild
+    #     -sdk iphonesimulator
+    #     -configuration Debug
+    #     -workspace Template_iOSUIKit.xcworkspace
+    #     -scheme Template_iOSUIKit
+    #     build
+    #     | bundle exec xcpretty
 
     # 単体テストの実行
     - name: Run Fastlane - test
-      run: fastlane scan
+      run: fastlane test
     # - name: Run tests
     #   run: set -o pipefail &&
     #     xcodebuild
@@ -104,17 +108,29 @@ jobs:
     #     | bundle exec xcpretty --report html
 
     # コードカバレッジの出力
-    - name: Convert Code coverage to HTML
-      run: bundle exec slather coverage --html --output-directory html_report
+    # - name: Convert Code coverage to HTML
+    #   run: bundle exec slather coverage --html --output-directory static_html/coverage_result
 
-    # テスト結果のアップロード
+    # テスト結果のアップロード fastlaneで生成している
     - uses: actions/upload-artifact@v2
       with:
-        name: test-results
-        path: fastlane/test_output
+        name: test-result
+        path: static_html/test_result
 
-    # コードカバレッジのアップロード
+    # コードカバレッジのアップロード fastlaneで生成している
     - uses: actions/upload-artifact@v2
       with:
-        name: test-coverage
-        path: html_report
+        name: coverage-result
+        path: static_html/coverage_result
+
+    # AWS S3
+    - name: credential aws
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ap-northeast-1
+
+    - name: sync S3
+      working-directory: static_html
+      run: aws s3 sync . s3://templateiosuikit/static_html --delete --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --exclude "README.md"
