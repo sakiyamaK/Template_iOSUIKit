@@ -6,5 +6,5 @@ target 'Template_iOSUIKit' do
   
   pod 'R.swift'
   pod 'Firebase/Analytics'
-  
+
 end
