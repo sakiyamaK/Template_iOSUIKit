@@ -35,6 +35,7 @@ platform :ios do
       output_files: "index.html"
     )
 
+    #カバレッジ整形ツール https://github.com/SlatherOrg/slather
     slather(
       html: true,
       workspace: "Template_iOSUIKit.xcworkspace",
@@ -42,7 +43,7 @@ platform :ios do
       scheme: "Template_iOSUIKit",
       build_directory: "build/fastlane/derived_data",
       output_directory: "static_html/coverage_result",
-      ignore: "Pods/**",
+      ignore: ["Pods/**", "R.generated.swift", "build/**"],
       # cobertura_xml: true,
       # verbose: true
     )

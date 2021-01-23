@@ -1,7 +1,0 @@
-# coverage_service: cobertura_xml
-# source_directory: Template_iOSUIKitTests
-xcodeproj: Template_iOSUIKit.xcodeproj
-workspace: Template_iOSUIKit.xcworkspace
-scheme: Template_iOSUIKit
-ignore:
-  - Pods/*
