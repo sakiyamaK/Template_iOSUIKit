@@ -16,6 +16,7 @@
 default_platform(:ios)
 
 platform :ios do
+
   desc "Runs all the tests"
   lane :test do
     scan(
@@ -46,6 +47,17 @@ platform :ios do
       ignore: ["Pods/**", "R.generated.swift", "build/**"],
       # cobertura_xml: true,
       # verbose: true
+    )
+  end
+
+  desc "Runs all the tests"
+  lane :send_slack do
+    slack(
+      slack_url: ENV["SLACK_WEBHOOK_URL"],
+      payload: {
+        "time": Time.new.to_s,
+        "result_url": "https://templateiosuikit.s3-ap-northeast-1.amazonaws.com/static_html/index.html"
+      }
     )
   end
 end

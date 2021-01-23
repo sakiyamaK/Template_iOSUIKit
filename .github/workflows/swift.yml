@@ -84,7 +84,7 @@ jobs:
 
     # 単体テストの実行
     - name: Run Fastlane - test
-      run: fastlane test
+      run: bundle exec fastlane test
 
     # テスト結果のアップロード fastlaneで生成している
     - uses: actions/upload-artifact@v2
@@ -109,3 +109,9 @@ jobs:
     - name: sync S3
       working-directory: static_html
       run: aws s3 sync . s3://templateiosuikit/static_html --delete --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --exclude "README.md"
+
+    # slackへ転送
+    - name: Run Fastlane - slack
+      env: 
+         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      run: bundle exec fastlane send_slack
